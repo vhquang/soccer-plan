@@ -2,6 +2,9 @@ import tkinter as tk
 import typing as tp
 
 
+FIELD_WIDTH = 800
+FIELD_LENGTH = 600
+
 def strategy_1(x: int, y: int,
                att_x: int, att_y: int,
                att_dx: int, att_dy: int) -> tp.Tuple[int, int]:
@@ -87,10 +90,12 @@ class Application:
     defenders: tp.List[Defender] = []
     strategy: tp.Callable = None
 
-    def __init__(self, width, height, strategy_func):
+    def __init__(self, strategy_func):
         root = tk.Tk()
-        canvas = tk.Canvas(root, width=width, height=height,
+        canvas = tk.Canvas(root, width=FIELD_WIDTH, height=FIELD_LENGTH,
                            background='green4', borderwidth=2)
+        canvas.create_line(FIELD_WIDTH / 2, 0, FIELD_WIDTH / 2, FIELD_LENGTH,
+                           fill='white', width=2)
         _ = Attacker(canvas, 600, 300, update_callback=self.update_defenders)
         self.defenders.append(Defender(canvas, 200, 100))
         self.defenders.append(Defender(canvas, 200, 300))
@@ -111,7 +116,7 @@ class Application:
 
 
 def main():
-    app = Application(800, 600, strategy_1)
+    app = Application(strategy_1)
     app.start()
 
 
