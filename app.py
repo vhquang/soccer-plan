@@ -34,6 +34,11 @@ class Player:
         self.item_id = master.create_oval(x, y, length_x, length_y,
                                           fill=self.color)
 
+    def move(self, dx: int, dy: int):
+        self.master.move(self.item_id, dx, dy)
+        self.x += dx
+        self.y += dy
+
 
 class Attacker(Player):
     color = 'red'
@@ -53,10 +58,8 @@ class Attacker(Player):
     def drag(self, event):
         dx = event.x - self._click_x
         dy = event.y - self._click_y
-        self.master.move(self.item_id, dx, dy)
+        self.move(dx, dy)
         self.callback(self.x, self.y, dx, dy)
-        self.x += dx
-        self.y += dy
         self._click_x = event.x
         self._click_y = event.y
 
@@ -66,9 +69,6 @@ class Defender(Player):
 
     def __init__(self, master: tk.Canvas, x: int, y: int):
         super().__init__(master, x, y)
-
-    def move(self, dx: int, dy: int):
-        self.master.move(self.item_id, dx, dy)
 
 
 class Application:
