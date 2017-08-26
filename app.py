@@ -65,8 +65,9 @@ class Attacker(Player):
     def drag(self, event):
         dx = event.x - self._click_x
         dy = event.y - self._click_y
+        prev_x, prev_y = self.x, self.y
         self.move(dx, dy)
-        self.callback(self.x, self.y, dx, dy)
+        self.callback(prev_x, prev_y, dx, dy)
         self._click_x = event.x
         self._click_y = event.y
 
