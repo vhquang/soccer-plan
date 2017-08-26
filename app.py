@@ -1,9 +1,9 @@
 import tkinter as tk
 import typing as tp
 
-
 FIELD_WIDTH = 800
 FIELD_LENGTH = 600
+
 
 def strategy_1(x: int, y: int,
                att_x: int, att_y: int,
