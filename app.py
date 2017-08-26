@@ -115,10 +115,6 @@ class Application:
         self.root.mainloop()
 
 
-def main():
+if __name__ == '__main__':
     app = Application(strategy_1)
     app.start()
-
-
-if __name__ == '__main__':
-    main()
