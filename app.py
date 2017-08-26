@@ -2,34 +2,38 @@ import tkinter as tk
 import typing as tp
 
 
-class Attacker:
+class Player:
+    master: tk.Canvas = None
     x, y = None, None
     SIZE_X, SIZE_Y = 20, 20
-    master: tk.Canvas = None
+    color = 'white'
     item_id: int = None
-    _click_x, _click_y = None, None
 
     def __init__(self, master: tk.Canvas, x: int, y: int):
         self.master = master
         self.item_id = master.create_oval(x, y,
                                           x + self.SIZE_X, y + self.SIZE_Y,
-                                          fill='blue')
+                                          fill=self.color)
+
+
+class Attacker(Player):
+    color = 'blue'
+    _click_x, _click_y = None, None
+
+    def __init__(self, master: tk.Canvas, x: int, y: int):
+        super().__init__(master, x, y)
         master.tag_bind(self.item_id, '<Button-1>', func=self.click)
         master.tag_bind(self.item_id, '<B1-Motion>', func=self.drag)
 
     def click(self, event):
         self._click_x, self._click_y = event.x, event.y
-        print(event.x, event.y)
 
     def drag(self, event):
-        canvas: tk.Canvas = event.widget
-        current_x, current_y = event.x, event.y
         dx = event.x - self._click_x
         dy = event.y - self._click_y
         self.master.move(self.item_id, dx, dy)
         self._click_x = event.x
         self._click_y = event.y
-        # self.x, self.y = event.x, event.y
 
 
 class Application:
@@ -39,16 +43,10 @@ class Application:
         root = tk.Tk()
         canvas = tk.Canvas(root, width=width, height=height,
                            background='green4', borderwidth=2)
-        Attacker(canvas)
+        _ = Attacker(canvas, 20, 20)
         canvas.pack()
         self._canvas = canvas
         root.mainloop()
-
-    def drag(self, event):
-        canvas: tk.Canvas = event.widget
-        x, y = event.x, event.y
-        print(x, y)
-        # event.widget.place(x=event.x_root, y=event.y_root, anchor=tk.CENTER)
 
 
 def main():
