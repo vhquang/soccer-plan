@@ -21,6 +21,9 @@ def strategy_1(x: int, y: int,
 
 
 class Player:
+    """
+    The base class for Attacker and Defender
+    """
     master: tk.Canvas = None
     x, y = None, None
     SIZE_X, SIZE_Y = 20, 20
@@ -41,6 +44,10 @@ class Player:
 
 
 class Attacker(Player):
+    """
+    The Attacker class is draggable, and will update back to the game about its
+    movement.
+    """
     color = 'red'
     _click_x, _click_y = None, None
     callback: tp.Callable
@@ -72,6 +79,9 @@ class Defender(Player):
 
 
 class Application:
+    """
+    Main application logic, that will create the board, and handle strategy
+    """
     _canvas: tk.Canvas = None
     defenders: tp.List[Defender] = []
     strategy: tp.Callable = None
