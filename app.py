@@ -19,7 +19,13 @@ def strategy_1(x: int, y: int,
     :param att_dy: attacker y delta
     :return: dx, dy that the defender need to move
     """
-    dx, dy = -att_dx, 0
+    new_x_att_pos = att_x - att_dx
+    new_y_att_pos = att_y - att_dy
+
+    dx = 0.05  * (new_x_att_pos - x)
+    dy = 0.05  * (new_y_att_pos - y)
+
+    #dx, dy = -att_dx, -att_dy
     return dx, dy
 
 
