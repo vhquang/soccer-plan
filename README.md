@@ -1,4 +1,4 @@
-Python 3 project. No extra dependencies is needed at the moment.
+Python > 3.5 project. No extra dependencies is needed at the moment.
 
 To run the app:
 ```python
