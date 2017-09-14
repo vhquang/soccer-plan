@@ -1,5 +1,6 @@
 import tkinter as tk
 import typing as tp
+import math
 
 FIELD_WIDTH = 800
 FIELD_LENGTH = 600
@@ -19,9 +20,57 @@ def strategy_1(x: int, y: int,
     :param att_dy: attacker y delta
     :return: dx, dy that the defender need to move
     """
-    dx, dy = -att_dx, -att_dy
+
+    #Strategy_1 basically try to move defenders to attacker's position
+    new_x_att_pos = att_x + att_dx
+    new_y_att_pos = att_y + att_dy
+
+    distance_att = math.sqrt((att_dx**(2)+att_dy**(2)))
+    distance_def = math.sqrt(((new_x_att_pos - x)**2) + ((new_y_att_pos - y)**2))
+
+    if distance_def < 100:
+        return 0, 0
+    
+    # print(new_x_att_pos,x)
+    # print( distance_att,distance_def)
+    # print(distance_att/distance_def)
+
+    scale = min(distance_att / distance_def, 1)
+
+    dx = scale * (new_x_att_pos - x)
+    dy = scale * (new_y_att_pos - y)
+    # multiple by #coefficient to only move defender partial distance to attaker's position
+
+
+    #dx, dy = -att_dx, -att_dy
     return dx, dy
 
+def strategy_2(x: int, y: int,
+               att_x: int, att_y: int,
+               att_dx: int, att_dy: int) -> tp.Tuple[int, int]:
+    """
+    Calculate the move needed by the defender
+
+    :param x: current x-axis defender position
+    :param y: current y-axis defender position
+    :param att_x: current x-axis attacker position
+    :param att_y: current y-axis attacker position
+    :param att_dx: attacker x delta
+    :param att_dy: attacker y delta
+    :return: dx, dy that the defender need to move
+    """
+    #if attack move forward, defender back pedal in a line
+    #if attack move backward, defender rushed up in a line
+    # also shift defender vertically as attacker move up and down
+    print (att_dy)
+    if att_dx < 0 and att_dy < 0:
+        dx = 0.8 * att_dx #back pedal fast but not as fast as attacker - wanna hold them off
+        dy =  att_dy
+        return dx,dy
+    if att_dx >= 0 and att_dy >= 0:
+        dx = 0.2 * (att_dx) #bring the line defender up but not as fast as attacker - prevent counter attack 
+        dy =  att_dy
+        return dx,dy
 
 class Player:
     """
@@ -96,6 +145,7 @@ class Application:
                            background='green4', borderwidth=2)
         canvas.create_line(FIELD_WIDTH / 2, 0, FIELD_WIDTH / 2, FIELD_LENGTH,
                            fill='white', width=2)
+        canvas.create_oval(FIELD_WIDTH * 0.25 ,FIELD_LENGTH * 0.25,(FIELD_WIDTH) * 0.75,(FIELD_LENGTH)*0.75, fill ='')
         _ = Attacker(canvas, 600, 300, update_callback=self.update_defenders)
         self.defenders.append(Defender(canvas, 200, 100))
         self.defenders.append(Defender(canvas, 200, 300))
