@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.5"
+  # - "3.5"
   - "3.6"
   - "nightly"
 # command to install dependencies
@@ -11,4 +11,4 @@ install:
   - pip install .
 # command to run test
 script:
-  - python -m pytest
+  - pytest
