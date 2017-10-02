@@ -20,9 +20,9 @@ python main.py
 Testing is done with [pytest](https://docs.pytest.org/en/latest/getting-started.html)
 The test suite is located in `tests` folder.
 
-To run the test:
+Because running `> pytest` may not work Mac, to run the test more consistent on different platforms, use:
 ```bash
-pytest
+python -m pytest
 ```
 
 

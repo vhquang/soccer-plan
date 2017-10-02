@@ -1,8 +1,8 @@
 language: python
 python:
-  # - "3.5"
+  - "3.5"
   - "3.6"
-  # - "nightly"
+  - "nightly"
 # command to install dependencies
 before_script:
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
@@ -11,5 +11,4 @@ install:
   - pip install .
 # command to run test
 script:
-  - python --version
   - python -m pytest
