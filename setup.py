@@ -18,8 +18,8 @@ setup(name='soccer_strategy',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: MIT License',
 
-          'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
       ],
       packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
-      python_requires='>=3.4',
+      python_requires='>=3.6',
      )

@@ -1,6 +1,6 @@
 # Requirement
 
-Python > 3.5
+Python > 3.6
 For development, install the `requirements.txt`, preferably with pip:
 
 ```bash
