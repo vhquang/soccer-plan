@@ -4,6 +4,8 @@ python:
   # - "3.6"
   # - "nightly"
 # command to install dependencies
+before_script:
+  - export PYTHONPATH=$PYTHONPATH:$(pwd)
 install:
   - pip install -r requirements.txt
   - pip install .
