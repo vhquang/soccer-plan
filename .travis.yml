@@ -11,4 +11,4 @@ install:
   - pip install .
 # command to run test
 script:
-  - pytest
+  - python -m pytest
