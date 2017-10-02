@@ -1,7 +1,0 @@
-README.md
-modules/__init__.py
-modules/app.py
-soccer_strategy.egg-info/PKG-INFO
-soccer_strategy.egg-info/SOURCES.txt
-soccer_strategy.egg-info/dependency_links.txt
-soccer_strategy.egg-info/top_level.txt
