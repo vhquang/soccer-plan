@@ -1,4 +1,4 @@
-from modules.app import Application, strategy_1
+from soccer_strategy.app import Application, strategy_1
 
 
 if __name__ == '__main__':
