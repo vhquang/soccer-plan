@@ -10,3 +10,5 @@ install:
 # command to run test
 script:
   - python -m pytest
+notification:
+  email: false
